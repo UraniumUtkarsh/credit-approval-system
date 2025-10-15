@@ -125,3 +125,8 @@ curl -X GET http://localhost:8000/view-loan/5930
 ```bash
 curl -X GET http://localhost:8000/view-loans/1
 ```
+
+## Screenshot for Verification of API Endpoints
+<div align="center">
+  <img src="https://github.com/UraniumUtkarsh/Android_ToDo_App/blob/main/screenshot/cmd_curl.png" alt="Curl verified"/>
+</div>
