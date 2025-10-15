@@ -51,7 +51,6 @@ docker compose run web python manage.py ingest_data
 # 💡 Core Logic: Credit Score & Eligibility
 The application's core logic, residing in credit_system/services.py, calculates a credit score (out of 100) based on historical data and applies two mandatory checks:
 
-|-------------|----------------------|-----------------|
 |Credit Score |Minimum Interest Rate | Approval Status |
 |-------------|----------------------|-----------------|
 |CS > 50 |Requested Rat | Approved |
