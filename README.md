@@ -1,4 +1,5 @@
 # Credit Approval System Backend API
+
 This project implements a Credit Approval System API using Django 4+, Django Rest Framework (DRF), PostgreSQL as the database, and Celery for background data ingestion. The entire application stack is containerized using Docker Compose, allowing it to be started with a single command.
 ---
 # 🚀 Setup and Execution
