@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL Database Service
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: credit_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  # 2. Django Web/API Service
+  web:
+    build: .
+    container_name: django_web
+    command: gunicorn credit_approval_system.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      # Pass DB credentials to Django
+      DATABASE_URL: postgres://user:password@db:5432/credit_db
+    depends_on:
+      - db
+
+  # 3. Redis Message Broker Service (for Celery)
+  redis:
+    image: redis:alpine
+    container_name: redis_broker
+    ports:
+      - "6379:6379"
+
+  # 4. Celery Worker Service (Background Tasks)
+  worker:
+    build: .
+    container_name: celery_worker
+    command: celery -A credit_approval_system worker -l info
+    volumes:
+      - .:/app
+    environment:
+      # Pass DB and Redis credentials
+      DATABASE_URL: postgres://user:password@db:5432/credit_db
+      CELERY_BROKER_URL: redis://redis:6379/0
+    depends_on:
+      - db
+      - web
+      - redis
+
+volumes:
+  postgres_data:

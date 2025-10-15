@@ -1,0 +1,39 @@
+Byte-compiled / optimized / DLL files
+__pycache__
+.pyc
+pycache/
+*.py[cod]
+*$py.class
+*.so
+
+Environment files
+.env
+.flaskenv
+venv/
+env/
+*.sqlite3
+
+Django-specific cache files
+*.log
+*.pot
+*.mo
+*.prof
+
+Django internal temp files
+media/
+staticfiles/
+
+.DS_Store
+.vscode/
+.idea/
+
+Windows
+Thumbs.db
+
+!.dockerignore
+
+postgres_data/
+
+Celery specific
+*.pid
+*.sock

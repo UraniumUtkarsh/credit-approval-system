@@ -1,0 +1,9 @@
+Django>=4.0
+djangorestframework
+psycopg2-binary # PostgreSQL adapter
+celery
+redis # Celery message broker
+pandas
+openpyxl # Required for pandas to read .xlsx files
+python-decouple # For environment variables (best practice)
+gunicorn # Production WSGI server
